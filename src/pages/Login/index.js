@@ -26,7 +26,7 @@ export default function Login() {
             value={email}
             onChange={(event) => set_Email(event.target.value)}
             type="email"
-            placeholder="Enter email"
+            placeholder="name@example.com"
             required
           />
         </Form.Group>
