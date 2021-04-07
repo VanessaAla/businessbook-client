@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Col } from "react-bootstrap";
 
 export default function SignUp() {
@@ -13,9 +14,14 @@ export default function SignUp() {
   const [address, set_Address] = useState("");
   const [city, set_City] = useState("");
   const [postalCode, set_PostalCode] = useState("");
+  const dispatch = useDispatch();
 
   function submitForm(event) {
     event.preventDefault();
+
+    dispatch(
+      SignUp(firstName, lastName, email, password, address, city, postalCode)
+    );
 
     set_firstName("");
     set_lastName("");
