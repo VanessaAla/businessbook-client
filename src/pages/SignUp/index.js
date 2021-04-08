@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 import { signUp } from "../../store/user/actions";
+import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 
 export default function SignUp() {
@@ -16,6 +17,14 @@ export default function SignUp() {
   const [city, set_City] = useState("");
   const [postalCode, set_PostalCode] = useState("");
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (token !== null) {
+      history.push("/");
+    }
+  }, [token, history]);
 
   function submitForm(event) {
     event.preventDefault();
